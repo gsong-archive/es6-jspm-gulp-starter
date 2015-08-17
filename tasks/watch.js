@@ -7,7 +7,7 @@ import gulp from 'gulp';
 
 function reportChange(event) {
   console.log(
-    'File ' + event.path + ' was ' + event.type + ', running tasks…'
+    `File ${event.path} was ${event.type}, running tasks…`
   );
 }
 

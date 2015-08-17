@@ -1,13 +1,17 @@
 {
   "name": "es6-jspm-gulp-starter",
-  "version": "1.0.0",
-  "description": "ES6 starter template, using jspm and gulp",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "ES6 starter template, using babel, jspm, and gulp",
+  "main": "dist/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "George Song",
-  "license": "MIT",
+  "author": {
+    "name": "George Song",
+    "email": "george@monozuku.com"
+  },
+  "readmeFilename": "README.md",
+  "license": "Unlicense",
   "jspm": {
     "directories": {},
     "dependencies": {},

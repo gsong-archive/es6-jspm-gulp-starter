@@ -1,4 +1,6 @@
-import * as paths from '../paths';
+/*eslint-disable no-console */
+
+import * as paths from './settings/paths';
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
 

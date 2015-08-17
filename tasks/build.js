@@ -1,5 +1,5 @@
-import * as compilerOptions from '../babel-options';
-import * as paths from '../paths';
+import * as compilerOptions from './settings/babel';
+import * as paths from './settings/paths';
 import babel from 'gulp-babel';
 import changed from 'gulp-changed';
 import gulp from 'gulp';

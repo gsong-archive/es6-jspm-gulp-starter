@@ -1,2 +1,5 @@
+/*eslint-disable no-console */
+import requireDir from 'require-dir';
+
 // Load custom tasks from the `tasks` directory
-try { require('require-dir')('build/tasks'); } catch (err) { console.error(err); }
+try { requireDir('build/tasks'); } catch (err) { console.error(err); }

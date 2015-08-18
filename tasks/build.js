@@ -1,3 +1,4 @@
+/*eslint-disable no-alert, no-console */
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
@@ -10,7 +11,12 @@ const $ = gulpLoadPlugins();
 
 gulp.task('build-system', () =>
   gulp.src(paths.source)
-  .pipe($.plumber())
+  .pipe($.plumber({
+    errorHandler: (err) => {
+      console.log(err);
+      this.emit('end');
+    }
+  }))
   .pipe($.changed(paths.output, {extension: '.js'}))
   .pipe($.sourcemaps.init({loadMaps: true}))
   .pipe($.babel(babelOptions))
@@ -28,7 +34,12 @@ gulp.task('build-html', () =>
 
 gulp.task('build-styles', () =>
   gulp.src(paths.style)
-  .pipe($.plumber())
+  .pipe($.plumber({
+    errorHandler: (err) => {
+      console.log(err);
+      this.emit('end');
+    }
+  }))
   .pipe($.changed(paths.output, {extension: '.css'}))
   .pipe($.sourcemaps.init({loadMaps: true}))
   .pipe($.sass().on('error', $.sass.logError))

@@ -14,7 +14,10 @@
   "license": "Unlicense",
   "jspm": {
     "directories": {},
-    "dependencies": {},
+    "dependencies": {
+      "clean-css": "npm:clean-css@^3.3.9",
+      "css": "github:systemjs/plugin-css@^0.1.13"
+    },
     "devDependencies": {
       "babel": "npm:babel-core@~5.1.13",
       "babel-runtime": "npm:babel-runtime@~5.1.13",
@@ -27,12 +30,11 @@
     "browser-sync": "~2.7.6",
     "del": "~1.2.0",
     "gulp": "~3.9.0",
-    "gulp-babel": "~5.1.0",
     "gulp-changed": "~1.2.1",
     "gulp-load-plugins": "~0.10.0",
     "gulp-plumber": "~1.0.1",
     "gulp-sass": "~2.0.1",
-    "gulp-sourcemaps": "~1.5.2",
+    "jspm": "~0.15.7",
     "require-dir": "~0.3.0",
     "run-sequence": "~1.1.0",
     "vinyl-paths": "~1.0.0"

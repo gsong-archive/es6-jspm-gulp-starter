@@ -1,4 +1,6 @@
 /*eslint-disable no-alert, no-console */
+import path from 'path';
+
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
@@ -10,9 +12,19 @@ import * as paths from './settings/paths';
 const $ = gulpLoadPlugins();
 
 
+gulp.task('build:copy_to_tmp', ['clean:tmp'], () =>
+  gulp.src(paths.srcAll)
+  .pipe(gulp.dest(paths.tmpDir))
+);
+
+
 gulp.task('build:jspm', ['compile:styles'], () => {
   let builder = new jspm.Builder();
-  builder.buildSFX('app/scripts/main', '.build/scripts/main.js', {
+  let script = 'scripts/main';
+  let infile = path.join(paths.tmpDir, script);
+  let outfile = path.join(paths.buildDir, script + '.js');
+
+  return builder.buildSFX(infile, outfile, {
     minify: false,
     mangle: false,
     sourceMaps: true
@@ -21,8 +33,7 @@ gulp.task('build:jspm', ['compile:styles'], () => {
 
 
 gulp.task('build:html', () =>
-  gulp.src(paths.htmlSrc)
-  .pipe($.changed(paths.buildDir, {extension: '.html'}))
+  gulp.src(paths.srcHtml)
   .pipe($.htmlReplace({'js': 'scripts/main.js'}))
   .pipe(gulp.dest(paths.buildDir))
 );
@@ -30,7 +41,7 @@ gulp.task('build:html', () =>
 
 gulp.task('build', (callback) =>
   runSequence(
-    'clean',
+    ['clean:build', 'build:copy_to_tmp'],
     ['build:jspm', 'build:html'],
     callback
   )

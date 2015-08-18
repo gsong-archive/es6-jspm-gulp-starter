@@ -9,7 +9,7 @@ const $ = gulpLoadPlugins();
 
 
 gulp.task('compile:styles', () =>
-  gulp.src(paths.styleSrc)
+  gulp.src(paths.srcStyle)
   .pipe($.plumber({
     errorHandler: (err) => {
       console.log(err);
@@ -18,5 +18,5 @@ gulp.task('compile:styles', () =>
   }))
   .pipe($.changed(paths.buildDir, {extension: '.css'}))
   .pipe($.sass().on('error', $.sass.logError))
-  .pipe(gulp.dest(paths.buildDir))
+  .pipe(gulp.dest(paths.tmpDir))
 );

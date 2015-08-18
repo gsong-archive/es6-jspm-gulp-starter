@@ -1,4 +1,4 @@
-import '../../.build/styles/foo.css!';
+import '../styles/foo.css!';
 
 
 class Foo {

@@ -1,8 +1,25 @@
 /*eslint-disable no-console */
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
+import runSequence from 'run-sequence';
 
 import * as paths from './settings/paths';
+
+
+let bsOptions = {
+  ghostMode: false,
+  open: false,
+  notify: false,
+  port: 9000
+}
+
+let bsServerOptions = {
+    baseDir: ['.', paths.srcDir, paths.tmpDir],
+    middleware: (req, res, next) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      next();
+    }
+}
 
 
 function reportChange(event) {
@@ -12,49 +29,36 @@ function reportChange(event) {
 }
 
 
-gulp.task("reload", function () {
-    browserSync.reload();
+gulp.task('reload', () => browserSync.reload());
+
+
+gulp.task('reload:build', (callback) => {
+  return runSequence(
+    'build',
+    'reload',
+    callback
+  );
 });
 
 
-// this task utilizes the browsersync plugin
-// to create a dev server instance
-// at http://localhost:9000
 gulp.task('serve:dev', ['compile:styles'], (done) => {
-  browserSync({
-    ghostMode: false,
-    open: false,
-    notify: false,
-    port: 9000,
-    server: {
-      baseDir: ['.', paths.srcDir],
-      middleware: (req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        next();
-      }
-    }
-  }, done);
+  let opts = Object.assign({}, bsOptions, {server: bsServerOptions});
+  browserSync(opts, done);
 
-  gulp.watch(paths.scriptSrc, ['reload']).on('change', reportChange);
-  gulp.watch(paths.htmlSrc, ['reload']).on('change', reportChange);
-  gulp.watch(paths.styleSrc, ['compile:styles', 'reload']).on(
+  gulp.watch(paths.srcScript, ['reload']).on('change', reportChange);
+  gulp.watch(paths.srcHtml, ['reload']).on('change', reportChange);
+  gulp.watch(paths.srcStyle, ['compile:styles', 'reload']).on(
     'change', reportChange
   );
 });
 
 
-gulp.task('serve:build', (done) => {
-  browserSync({
-    ghostMode: false,
-    open: false,
-    notify: false,
-    port: 9000,
-    server: {
-      baseDir: ['.', paths.buildDir],
-      middleware: (req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        next();
-      }
-    }
-  }, done);
+gulp.task('serve:build', ['build'], (done) => {
+  let serverOpts = Object.assign(
+    {}, bsServerOptions, {baseDir: ['.', paths.buildDir]}
+  );
+  let opts = Object.assign({}, bsOptions, {server: serverOpts});
+  browserSync(opts, done);
+
+  gulp.watch(paths.srcAll, ['reload:build']).on('change', reportChange);
 });

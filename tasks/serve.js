@@ -1,7 +1,7 @@
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
 
-import {appRoot, buildDir} from './settings/paths';
+import {srcDir, buildDir} from './settings/paths';
 
 
 // this task utilizes the browsersync plugin
@@ -12,7 +12,7 @@ gulp.task('serve', ['build'], (done) => {
     open: false,
     port: 9000,
     server: {
-      baseDir: ['.', appRoot, buildDir],
+      baseDir: ['.', srcDir, buildDir],
       middleware: (req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();

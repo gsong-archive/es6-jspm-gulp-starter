@@ -10,7 +10,7 @@ import babelOptions from './settings/babel';
 const $ = gulpLoadPlugins();
 
 gulp.task('build-system', () =>
-  gulp.src(paths.source)
+  gulp.src(paths.scriptSrc)
   .pipe($.plumber({
     errorHandler: (err) => {
       console.log(err);
@@ -27,13 +27,13 @@ gulp.task('build-system', () =>
 );
 
 gulp.task('build-html', () =>
-  gulp.src(paths.html)
+  gulp.src(paths.htmlSrc)
   .pipe($.changed(paths.buildDir, {extension: '.html'}))
   .pipe(gulp.dest(paths.buildDir))
 );
 
 gulp.task('build-styles', () =>
-  gulp.src(paths.style)
+  gulp.src(paths.styleSrc)
   .pipe($.plumber({
     errorHandler: (err) => {
       console.log(err);

@@ -1,6 +1,6 @@
-export let appRoot = 'app/';
+export let srcDir = 'app/';
 export let buildDir = 'build/';
-export let html = appRoot + '**/*.html';
-export let source = appRoot + '**/*.js';
-export let sourceMapRelativePath = '../' + appRoot
-export let style = appRoot + '**/*.scss';
+export let htmlSrc = srcDir + '**/*.html';
+export let scriptSrc = srcDir + '**/*.js';
+export let sourceMapRelativePath = '../' + srcDir
+export let styleSrc = srcDir + '**/*.scss';

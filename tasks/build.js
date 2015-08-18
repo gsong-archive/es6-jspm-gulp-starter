@@ -1,19 +1,19 @@
-import * as compilerOptions from './settings/babel';
-import * as paths from './settings/paths';
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
 
+import * as paths from './settings/paths';
+import babelOptions from './settings/babel';
+
 
 const $ = gulpLoadPlugins();
-let assign = Object.assign
 
 gulp.task('build-system', () =>
   gulp.src(paths.source)
   .pipe($.plumber())
   .pipe($.changed(paths.output, {extension: '.js'}))
   .pipe($.sourcemaps.init({loadMaps: true}))
-  .pipe($.babel(assign({}, compilerOptions, {modules:'system'})))
+  .pipe($.babel(babelOptions))
   .pipe($.sourcemaps.write({
     includeContent: false, sourceRoot: paths.sourceMapRelativePath
   }))

@@ -23,7 +23,7 @@ gulp.task('serve', ['build'], (done) => {
     notify: false,
     port: 9000,
     server: {
-      baseDir: ['.', paths.srcDir, paths.buildDir],
+      baseDir: ['.', paths.srcDir],
       middleware: (req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
@@ -41,3 +41,21 @@ gulp.task('serve:dev', ['serve'], () => {
     'change', reportChange
   );
 });
+
+
+gulp.task('serve:build', (done) => {
+  browserSync({
+    ghostMode: false,
+    open: false,
+    notify: false,
+    port: 9000,
+    server: {
+      baseDir: ['.', paths.buildDir],
+      middleware: (req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        next();
+      }
+    }
+  }, done);
+});
+

@@ -2,29 +2,21 @@
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
+import jspm from 'jspm';
 
 import * as paths from './settings/paths';
-import babelOptions from './settings/babel';
 
 
 const $ = gulpLoadPlugins();
 
-gulp.task('build-system', () =>
-  gulp.src(paths.scriptSrc)
-  .pipe($.plumber({
-    errorHandler: (err) => {
-      console.log(err);
-      this.emit('end');
-    }
-  }))
-  .pipe($.changed(paths.buildDir, {extension: '.js'}))
-  .pipe($.sourcemaps.init({loadMaps: true}))
-  .pipe($.babel(babelOptions))
-  .pipe($.sourcemaps.write({
-    includeContent: false, sourceRoot: paths.sourceMapRelativePath
-  }))
-  .pipe(gulp.dest(paths.buildDir))
-);
+gulp.task('build-system', () => {
+  let builder = new jspm.Builder();
+  builder.buildSFX('app/scripts/index', 'build/scripts/index.js', {
+    minify: false,
+    mangle: true,
+    sourceMaps: true
+  });
+});
 
 gulp.task('build-html', () =>
   gulp.src(paths.htmlSrc)
@@ -41,18 +33,14 @@ gulp.task('build-styles', () =>
     }
   }))
   .pipe($.changed(paths.buildDir, {extension: '.css'}))
-  .pipe($.sourcemaps.init({loadMaps: true}))
   .pipe($.sass().on('error', $.sass.logError))
-  .pipe($.sourcemaps.write({
-    includeContent: false, sourceRoot: paths.sourceMapRelativePath
-  }))
   .pipe(gulp.dest(paths.buildDir))
 );
 
 gulp.task('build', (callback) =>
   runSequence(
-    'clean',
-    ['build-system', 'build-html', 'build-styles'],
+    'clean', 'build-styles',
+    ['build-system', 'build-html'],
     callback
   )
 );

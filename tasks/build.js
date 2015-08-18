@@ -17,19 +17,19 @@ gulp.task('build-system', () =>
       this.emit('end');
     }
   }))
-  .pipe($.changed(paths.output, {extension: '.js'}))
+  .pipe($.changed(paths.buildDir, {extension: '.js'}))
   .pipe($.sourcemaps.init({loadMaps: true}))
   .pipe($.babel(babelOptions))
   .pipe($.sourcemaps.write({
     includeContent: false, sourceRoot: paths.sourceMapRelativePath
   }))
-  .pipe(gulp.dest(paths.output))
+  .pipe(gulp.dest(paths.buildDir))
 );
 
 gulp.task('build-html', () =>
   gulp.src(paths.html)
-  .pipe($.changed(paths.output, {extension: '.html'}))
-  .pipe(gulp.dest(paths.output))
+  .pipe($.changed(paths.buildDir, {extension: '.html'}))
+  .pipe(gulp.dest(paths.buildDir))
 );
 
 gulp.task('build-styles', () =>
@@ -40,13 +40,13 @@ gulp.task('build-styles', () =>
       this.emit('end');
     }
   }))
-  .pipe($.changed(paths.output, {extension: '.css'}))
+  .pipe($.changed(paths.buildDir, {extension: '.css'}))
   .pipe($.sourcemaps.init({loadMaps: true}))
   .pipe($.sass().on('error', $.sass.logError))
   .pipe($.sourcemaps.write({
     includeContent: false, sourceRoot: paths.sourceMapRelativePath
   }))
-  .pipe(gulp.dest(paths.output))
+  .pipe(gulp.dest(paths.buildDir))
 );
 
 gulp.task('build', (callback) =>

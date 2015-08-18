@@ -1,6 +1,8 @@
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
 
+import {appRoot, buildDir} from './settings/paths';
+
 
 // this task utilizes the browsersync plugin
 // to create a dev server instance
@@ -10,7 +12,7 @@ gulp.task('serve', ['build'], (done) => {
     open: false,
     port: 9000,
     server: {
-      baseDir: ['.', 'app', 'dist'],
+      baseDir: ['.', appRoot, buildDir],
       middleware: (req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();

@@ -2,10 +2,10 @@ import del from 'del';
 import gulp from 'gulp';
 import vinylPaths from 'vinyl-paths';
 
-import * as paths from './settings/paths';
+import {buildDir} from './settings/paths';
 
 
 gulp.task('clean', () =>
-  gulp.src([paths.output])
+  gulp.src([buildDir])
   .pipe(vinylPaths(del))
 );

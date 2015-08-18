@@ -39,10 +39,20 @@ gulp.task('build:html', () =>
 );
 
 
+gulp.task('build:images', () =>
+  gulp.src(paths.srcImage)
+  .pipe($.imagemin({
+    progressive: true,
+    interlaced: true
+  }))
+  .pipe(gulp.dest(paths.buildDir))
+)
+
+
 gulp.task('build', (callback) =>
   runSequence(
     ['clean:build', 'build:copy_to_tmp'],
-    ['build:jspm', 'build:html'],
+    ['build:jspm', 'build:html', 'build:images'],
     callback
   )
 );

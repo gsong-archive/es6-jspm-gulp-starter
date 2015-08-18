@@ -49,7 +49,7 @@ gulp.task('dist:copy', () => {
 gulp.task('dist', (callback) =>
   runSequence(
     ['clean:build', 'clean:dist', 'build:copy_to_tmp'],
-    ['dist:jspm', 'dist:html'],
+    ['dist:jspm', 'dist:html', 'build:images'],
     'dist:copy',
     callback
   )

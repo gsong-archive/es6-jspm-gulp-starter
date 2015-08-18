@@ -33,11 +33,12 @@ gulp.task('reload', () => browserSync.reload());
 
 
 gulp.task('reload:build', (callback) => {
-  return runSequence(
-    'build',
-    'reload',
-    callback
-  );
+  return runSequence('build', 'reload', callback);
+});
+
+
+gulp.task('reload:dist', (callback) => {
+  return runSequence('dist', 'reload', callback);
 });
 
 
@@ -55,10 +56,21 @@ gulp.task('serve:dev', ['compile:styles'], (done) => {
 
 gulp.task('serve:build', ['build'], (done) => {
   let serverOpts = Object.assign(
-    {}, bsServerOptions, {baseDir: ['.', paths.buildDir]}
+    {}, bsServerOptions, {baseDir: [paths.buildDir]}
   );
   let opts = Object.assign({}, bsOptions, {server: serverOpts});
   browserSync(opts, done);
 
   gulp.watch(paths.srcAll, ['reload:build']).on('change', reportChange);
+});
+
+
+gulp.task('serve:dist', ['dist'], (done) => {
+  let serverOpts = Object.assign(
+    {}, bsServerOptions, {baseDir: [paths.distDir]}
+  );
+  let opts = Object.assign({}, bsOptions, {server: serverOpts});
+  browserSync(opts, done);
+
+  gulp.watch(paths.srcAll, ['reload:dist']).on('change', reportChange);
 });

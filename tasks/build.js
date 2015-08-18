@@ -6,7 +6,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
 import jspm from 'jspm';
 
-import * as paths from './settings/paths';
+import * as paths from './paths';
 
 
 const $ = gulpLoadPlugins();

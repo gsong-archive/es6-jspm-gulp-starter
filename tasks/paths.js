@@ -2,6 +2,7 @@ import path from 'path';
 
 
 export let buildDir = '.build/';
+export let distDir = 'dist/';
 export let srcDir = 'app/';
 export let tmpDir = '.tmp/';
 

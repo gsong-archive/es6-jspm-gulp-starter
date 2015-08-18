@@ -3,7 +3,7 @@ import browserSync from 'browser-sync';
 import gulp from 'gulp';
 import runSequence from 'run-sequence';
 
-import * as paths from './settings/paths';
+import * as paths from './paths';
 
 
 let bsOptions = {

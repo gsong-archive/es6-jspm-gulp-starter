@@ -2,7 +2,7 @@ import del from 'del';
 import gulp from 'gulp';
 import vinylPaths from 'vinyl-paths';
 
-import {buildDir, tmpDir} from './settings/paths';
+import {buildDir, tmpDir} from './paths';
 
 
 gulp.task('clean:build', () =>

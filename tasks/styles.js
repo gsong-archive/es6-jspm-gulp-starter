@@ -2,7 +2,7 @@
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 
-import * as paths from './settings/paths';
+import * as paths from './paths';
 
 
 const $ = gulpLoadPlugins();

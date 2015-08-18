@@ -33,7 +33,6 @@
     "gulp-plumber": "~1.0.1",
     "gulp-sass": "~2.0.1",
     "gulp-sourcemaps": "~1.5.2",
-    "object.assign": "~4.0.1",
     "require-dir": "~0.3.0",
     "run-sequence": "~1.1.0",
     "vinyl-paths": "~1.0.0"

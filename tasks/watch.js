@@ -1,8 +1,8 @@
 /*eslint-disable no-console */
-
-import * as paths from './settings/paths';
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
+
+import * as paths from './settings/paths';
 
 
 const reload = browserSync.reload;

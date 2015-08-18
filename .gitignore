@@ -1,3 +1,5 @@
 .DS_STORE
+.build
+.tmp
 jspm_packages
 node_modules

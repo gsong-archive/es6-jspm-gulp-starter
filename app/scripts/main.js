@@ -1,6 +1,6 @@
 import Foo from './foo';
 
-import '../../build/styles/styles.css!';
+import '../../.build/styles/styles.css!';
 
 
 let foo = new Foo();

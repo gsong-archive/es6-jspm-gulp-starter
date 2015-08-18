@@ -12,7 +12,7 @@ const $ = gulpLoadPlugins();
 
 gulp.task('build:jspm', ['compile:styles'], () => {
   let builder = new jspm.Builder();
-  builder.buildSFX('app/scripts/index', 'build/scripts/index.js', {
+  builder.buildSFX('app/scripts/main', '.build/scripts/main.js', {
     minify: false,
     mangle: false,
     sourceMaps: true
@@ -23,6 +23,7 @@ gulp.task('build:jspm', ['compile:styles'], () => {
 gulp.task('build:html', () =>
   gulp.src(paths.htmlSrc)
   .pipe($.changed(paths.buildDir, {extension: '.html'}))
+  .pipe($.htmlReplace({'js': 'scripts/main.js'}))
   .pipe(gulp.dest(paths.buildDir))
 );
 

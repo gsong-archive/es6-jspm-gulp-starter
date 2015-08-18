@@ -12,11 +12,11 @@ import * as paths from './paths';
 const $ = gulpLoadPlugins();
 
 
-gulp.task('dist:jspm', () => {
+gulp.task('dist:jspm', ['compile:styles'], () => {
   let builder = new jspm.Builder();
   let script = 'scripts/main';
   let infile = path.join(paths.tmpDir, script);
-  let outfile = path.join(paths.distDir, script + '.js');
+  let outfile = path.join(paths.buildDir, script + '.js');
 
   return builder.buildSFX(infile, outfile, {
     minify: true,
@@ -29,10 +29,28 @@ gulp.task('dist:jspm', () => {
 gulp.task('dist:html', () =>
   gulp.src(paths.srcHtml)
   .pipe($.htmlReplace({'js': 'scripts/main.js'}))
-  .pipe(gulp.dest(paths.distDir))
+  .pipe($.minifyHtml({empty: true}))
+  .pipe(gulp.dest(paths.buildDir))
 );
 
 
+gulp.task('dist:copy', () => {
+  const htmlFilter = $.filter("**/*.!(html)", {restore: true});
+
+  return gulp.src(paths.buildAll)
+  .pipe(htmlFilter)
+  .pipe($.rev())
+  .pipe(htmlFilter.restore)
+  .pipe($.revReplace())
+  .pipe(gulp.dest(paths.distDir))
+});
+
+
 gulp.task('dist', (callback) =>
-  runSequence('build', 'dist:jspm', 'dist:html', callback)
+  runSequence(
+    ['clean:build', 'clean:dist', 'build:copy_to_tmp'],
+    ['dist:jspm', 'dist:html'],
+    'dist:copy',
+    callback
+  )
 );

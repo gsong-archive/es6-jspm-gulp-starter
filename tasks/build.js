@@ -9,38 +9,28 @@ import * as paths from './settings/paths';
 
 const $ = gulpLoadPlugins();
 
-gulp.task('build-system', () => {
+
+gulp.task('build:jspm', ['compile:styles'], () => {
   let builder = new jspm.Builder();
   builder.buildSFX('app/scripts/index', 'build/scripts/index.js', {
     minify: false,
-    mangle: true,
+    mangle: false,
     sourceMaps: true
   });
 });
 
-gulp.task('build-html', () =>
+
+gulp.task('build:html', () =>
   gulp.src(paths.htmlSrc)
   .pipe($.changed(paths.buildDir, {extension: '.html'}))
   .pipe(gulp.dest(paths.buildDir))
 );
 
-gulp.task('build-styles', () =>
-  gulp.src(paths.styleSrc)
-  .pipe($.plumber({
-    errorHandler: (err) => {
-      console.log(err);
-      this.emit('end');
-    }
-  }))
-  .pipe($.changed(paths.buildDir, {extension: '.css'}))
-  .pipe($.sass().on('error', $.sass.logError))
-  .pipe(gulp.dest(paths.buildDir))
-);
 
 gulp.task('build', (callback) =>
   runSequence(
-    'clean', 'build-styles',
-    ['build-system', 'build-html'],
+    'clean',
+    ['build:jspm', 'build:html'],
     callback
   )
 );

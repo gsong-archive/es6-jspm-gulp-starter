@@ -5,18 +5,22 @@ import gulp from 'gulp';
 import * as paths from './settings/paths';
 
 
-const reload = browserSync.reload;
-
 function reportChange(event) {
   console.log(
     `File ${event.path} was ${event.type}, running tasks…`
   );
 }
 
+
+gulp.task("reload", function () {
+    browserSync.reload();
+});
+
+
 // this task utilizes the browsersync plugin
 // to create a dev server instance
 // at http://localhost:9000
-gulp.task('serve', ['build'], (done) => {
+gulp.task('serve:dev', ['compile:styles'], (done) => {
   browserSync({
     ghostMode: false,
     open: false,
@@ -30,14 +34,10 @@ gulp.task('serve', ['build'], (done) => {
       }
     }
   }, done);
-});
 
-gulp.task('serve:dev', ['serve'], () => {
-  gulp.watch(paths.scriptSrc, ['build-system', reload]).on(
-    'change', reportChange
-  );
-  gulp.watch(paths.htmlSrc, ['build-html', reload]).on('change', reportChange);
-  gulp.watch(paths.styleSrc, ['build-styles', reload]).on(
+  gulp.watch(paths.scriptSrc, ['reload']).on('change', reportChange);
+  gulp.watch(paths.htmlSrc, ['reload']).on('change', reportChange);
+  gulp.watch(paths.styleSrc, ['compile:styles', 'reload']).on(
     'change', reportChange
   );
 });
@@ -58,4 +58,3 @@ gulp.task('serve:build', (done) => {
     }
   }, done);
 });
-

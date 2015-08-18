@@ -1,4 +1,4 @@
-import Foo from './foo';
+import Foo from '../components/foo/foo';
 
 import '../styles/styles.css!';
 

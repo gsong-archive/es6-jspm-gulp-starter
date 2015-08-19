@@ -1,29 +1,29 @@
 /*eslint-disable no-alert, no-console */
-import path from 'path';
-
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
-import jspm from 'jspm';
 
 import * as paths from './paths';
+import {default as jspmBuild, OUTFILE} from './utils';
 
 
 const $ = gulpLoadPlugins();
 
 
-gulp.task('dist:jspm', ['compile:styles'], () => {
-  let builder = new jspm.Builder();
-  let script = 'scripts/main';
-  let infile = path.join(paths.tmpDir, script);
-  let outfile = path.join(paths.buildDir, script + '.js');
-
-  return builder.buildSFX(infile, outfile, {
+gulp.task('dist:jspm', ['compile:styles'], () =>
+  jspmBuild({
     minify: true,
     mangle: true,
     sourceMaps: false
-  });
-});
+  })
+);
+
+
+gulp.task('dist:js', ['dist:jspm'], () =>
+  gulp.src(OUTFILE)
+  .pipe($.replace(paths.fontAwesomePath, ''))
+  .pipe(gulp.dest(paths.buildScriptsDir))
+)
 
 
 gulp.task('dist:html', () =>
@@ -49,7 +49,7 @@ gulp.task('dist:copy', () => {
 gulp.task('dist', (callback) =>
   runSequence(
     ['clean:build', 'clean:dist', 'build:copy_to_tmp'],
-    ['dist:jspm', 'dist:html', 'build:images'],
+    ['dist:js', 'dist:html', 'build:images', 'build:fonts'],
     'dist:copy',
     callback
   )

@@ -20,6 +20,7 @@ System.config({
     "clean-css": "npm:clean-css@3.3.9",
     "core-js": "npm:core-js@0.9.13",
     "css": "github:systemjs/plugin-css@0.1.13",
+    "font-awesome": "npm:font-awesome@4.4.0",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -100,6 +101,9 @@ System.config({
     },
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
+    },
+    "npm:font-awesome@4.4.0": {
+      "css": "github:systemjs/plugin-css@0.1.13"
     },
     "npm:graceful-readlink@1.0.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2"

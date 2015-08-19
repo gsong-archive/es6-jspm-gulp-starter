@@ -9,17 +9,9 @@ const $ = gulpLoadPlugins();
 
 
 gulp.task('compile:styles', () => {
-  const AUTOPREFIXER_BROWSERS = [
-    'ie >= 10',
-    'ie_mob >= 10',
-    'ff >= 30',
-    'chrome >= 34',
-    'safari >= 7',
-    'opera >= 23',
-    'ios >= 7',
-    'android >= 4.4',
-    'bb >= 10'
-  ];
+  // See https://github.com/ai/browserslist for more details on how to set
+  // browser versions
+  const AUTOPREFIXER_BROWSERS = ['last 2 versions']
 
   return gulp.src(paths.SRC_STYLE)
   .pipe($.plumber({

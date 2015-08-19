@@ -1,22 +1,21 @@
 import path from 'path';
 
 
-export let buildDir = '.build/';
-export let distDir = 'dist/';
-export let srcDir = 'app/';
-export let tmpDir = '.tmp/';
-let jspmDir = 'jspm_packages';
+export const BUILD_DIR = '.build/';
+export const DIST_DIR = 'dist/';
+export const SRC_DIR = 'app/';
+export const TMP_DIR = '.tmp/';
 
-export let buildAll = path.join(buildDir, '**/*');
-export let buildScriptsDir = path.join(buildDir, 'scripts/');
+export const BUILD_ALL = path.join(BUILD_DIR, '**/*');
+export const BUILD_SCRIPTS_DIR = path.join(BUILD_DIR, 'scripts/');
 
-export let srcAll = path.join(srcDir, '**/*');
-export let srcHtml = path.join(srcDir, 'index.html');
-export let srcScript = path.join(srcDir, '**/*.js');
-export let srcStyle = path.join(srcDir, '**/*.scss');
+export const SRC_ALL = path.join(SRC_DIR, '**/*');
+export const SRC_HTML = path.join(SRC_DIR, 'index.html');
+export const SRC_SCRIPT = path.join(SRC_DIR, '**/*.js');
+export const SRC_STYLE = path.join(SRC_DIR, '**/*.scss');
 
-export let tmpImage = path.join(tmpDir, '**/*.+(png|jpg|svg)');
-export let tmpScriptsDir = path.join(tmpDir, 'scripts/');
+export const TMP_IMAGE = path.join(TMP_DIR, '**/*.+(png|jpg|svg)');
+export const TMP_SCRIPTS_DIR = path.join(TMP_DIR, 'scripts/');
 
-export let fontAwesomePath = path.join(jspmDir, 'npm/font-awesome@4.4.0/');
-export let fontSrc = path.join(fontAwesomePath, 'fonts/*');
+export const FONT_AWESOME_PATH = 'jspm_packages/npm/font-awesome@4.4.0/'
+export const FONT_SRC = path.join(FONT_AWESOME_PATH, 'fonts/*');

@@ -6,15 +6,15 @@ import runSequence from 'run-sequence';
 import * as paths from './paths';
 
 
-let bsOptions = {
+const BS_OPTIONS = {
   ghostMode: false,
   open: false,
   notify: false,
   port: 9000
 }
 
-let bsServerOptions = {
-    baseDir: ['.', paths.srcDir, paths.tmpDir],
+const BS_SERVER_OPTIONS = {
+    baseDir: ['.', paths.SRC_DIR, paths.TMP_DIR],
     middleware: (req, res, next) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
       next();
@@ -43,12 +43,12 @@ gulp.task('reload:dist', (callback) => {
 
 
 gulp.task('serve:dev', ['compile:styles'], (done) => {
-  let opts = Object.assign({}, bsOptions, {server: bsServerOptions});
+  let opts = Object.assign({}, BS_OPTIONS, {server: BS_SERVER_OPTIONS});
   browserSync(opts, done);
 
-  gulp.watch(paths.srcScript, ['reload']).on('change', reportChange);
-  gulp.watch(paths.srcHtml, ['reload']).on('change', reportChange);
-  gulp.watch(paths.srcStyle, ['compile:styles', 'reload']).on(
+  gulp.watch(paths.SRC_SCRIPT, ['reload']).on('change', reportChange);
+  gulp.watch(paths.SRC_HTML, ['reload']).on('change', reportChange);
+  gulp.watch(paths.SRC_STYLE, ['compile:styles', 'reload']).on(
     'change', reportChange
   );
 });
@@ -56,21 +56,21 @@ gulp.task('serve:dev', ['compile:styles'], (done) => {
 
 gulp.task('serve:build', ['build'], (done) => {
   let serverOpts = Object.assign(
-    {}, bsServerOptions, {baseDir: [paths.buildDir]}
+    {}, BS_SERVER_OPTIONS, {baseDir: [paths.BUILD_DIR]}
   );
-  let opts = Object.assign({}, bsOptions, {server: serverOpts});
+  let opts = Object.assign({}, BS_OPTIONS, {server: serverOpts});
   browserSync(opts, done);
 
-  gulp.watch(paths.srcAll, ['reload:build']).on('change', reportChange);
+  gulp.watch(paths.SRC_ALL, ['reload:build']).on('change', reportChange);
 });
 
 
 gulp.task('serve:dist', ['dist'], (done) => {
   let serverOpts = Object.assign(
-    {}, bsServerOptions, {baseDir: [paths.distDir]}
+    {}, BS_SERVER_OPTIONS, {baseDir: [paths.DIST_DIR]}
   );
-  let opts = Object.assign({}, bsOptions, {server: serverOpts});
+  let opts = Object.assign({}, BS_OPTIONS, {server: serverOpts});
   browserSync(opts, done);
 
-  gulp.watch(paths.srcAll, ['reload:dist']).on('change', reportChange);
+  gulp.watch(paths.SRC_ALL, ['reload:dist']).on('change', reportChange);
 });

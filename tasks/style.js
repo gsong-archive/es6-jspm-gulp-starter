@@ -9,14 +9,14 @@ const $ = gulpLoadPlugins();
 
 
 gulp.task('compile:styles', () =>
-  gulp.src(paths.srcStyle)
+  gulp.src(paths.SRC_STYLE)
   .pipe($.plumber({
     errorHandler: (err) => {
       console.log(err);
       this.emit('end');
     }
   }))
-  .pipe($.changed(paths.buildDir, {extension: '.css'}))
+  .pipe($.changed(paths.BUILD_DIR, {extension: '.css'}))
   .pipe($.sass().on('error', $.sass.logError))
-  .pipe(gulp.dest(paths.tmpDir))
+  .pipe(gulp.dest(paths.TMP_DIR))
 );

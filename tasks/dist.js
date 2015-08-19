@@ -25,22 +25,22 @@ gulp.task('dist:js', (callback) =>
 
 
 gulp.task('dist:html', () =>
-  gulp.src(paths.srcHtml)
+  gulp.src(paths.SRC_HTML)
   .pipe($.htmlReplace({'js': 'scripts/main.js'}))
   .pipe($.minifyHtml({empty: true}))
-  .pipe(gulp.dest(paths.buildDir))
+  .pipe(gulp.dest(paths.BUILD_DIR))
 );
 
 
 gulp.task('dist:copy', () => {
   const htmlFilter = $.filter("**/*.!(html)", {restore: true});
 
-  return gulp.src(paths.buildAll)
+  return gulp.src(paths.BUILD_ALL)
   .pipe(htmlFilter)
   .pipe($.rev())
   .pipe(htmlFilter.restore)
   .pipe($.revReplace())
-  .pipe(gulp.dest(paths.distDir))
+  .pipe(gulp.dest(paths.DIST_DIR))
 });
 
 

@@ -10,7 +10,7 @@ const $ = gulpLoadPlugins();
 
 gulp.task('js:replace_paths', () =>
   gulp.src(OUTFILE)
-  .pipe($.replace(paths.fontAwesomePath, ''))
-  .pipe($.replace(paths.tmpDir, ''))
-  .pipe(gulp.dest(paths.buildScriptsDir))
+  .pipe($.replace(paths.FONT_AWESOME_PATH, ''))
+  .pipe($.replace(paths.TMP_DIR, ''))
+  .pipe(gulp.dest(paths.BUILD_SCRIPTS_DIR))
 )

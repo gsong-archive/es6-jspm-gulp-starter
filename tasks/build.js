@@ -27,25 +27,25 @@ gulp.task('build:js', (callback) =>
 
 
 gulp.task('build:html', () =>
-  gulp.src(paths.srcHtml)
+  gulp.src(paths.SRC_HTML)
   .pipe($.htmlReplace({'js': 'scripts/main.js'}))
-  .pipe(gulp.dest(paths.buildDir))
+  .pipe(gulp.dest(paths.BUILD_DIR))
 );
 
 
 gulp.task('build:images', () =>
-  gulp.src(paths.tmpImage)
+  gulp.src(paths.TMP_IMAGE)
   .pipe($.imagemin({
     progressive: true,
     interlaced: true
   }))
-  .pipe(gulp.dest(paths.buildDir))
+  .pipe(gulp.dest(paths.BUILD_DIR))
 )
 
 
 gulp.task('build:fonts', () =>
-  gulp.src(paths.fontSrc)
-  .pipe(gulp.dest(path.join(paths.buildDir, 'fonts')))
+  gulp.src(paths.FONT_SRC)
+  .pipe(gulp.dest(path.join(paths.BUILD_DIR, 'fonts')))
 )
 
 

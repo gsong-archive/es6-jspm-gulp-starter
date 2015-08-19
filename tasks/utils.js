@@ -7,8 +7,8 @@ import * as paths from './paths';
 
 
 const SCRIPT = 'main';
-const INFILE = path.join(paths.tmpScriptsDir, SCRIPT);
-export const OUTFILE = path.join(paths.buildScriptsDir, SCRIPT + '.js');
+const INFILE = path.join(paths.TMP_SCRIPTS_DIR, SCRIPT);
+export const OUTFILE = path.join(paths.BUILD_SCRIPTS_DIR, SCRIPT + '.js');
 
 
 export default (options) => {
@@ -19,6 +19,6 @@ export default (options) => {
 
 
 gulp.task('utils:copy_to_tmp', ['clean:tmp'], () =>
-  gulp.src(paths.srcAll)
-  .pipe(gulp.dest(paths.tmpDir))
+  gulp.src(paths.SRC_ALL)
+  .pipe(gulp.dest(paths.TMP_DIR))
 );

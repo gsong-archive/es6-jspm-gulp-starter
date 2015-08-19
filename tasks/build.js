@@ -6,16 +6,10 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
 
 import * as paths from './paths';
-import {default as jspmBuild, OUTFILE} from './utils';
+import jspmBuild from './utils';
 
 
 const $ = gulpLoadPlugins();
-
-
-gulp.task('build:copy_to_tmp', ['clean:tmp'], () =>
-  gulp.src(paths.srcAll)
-  .pipe(gulp.dest(paths.tmpDir))
-);
 
 
 gulp.task('build:jspm', ['compile:styles'], () =>
@@ -27,10 +21,8 @@ gulp.task('build:jspm', ['compile:styles'], () =>
 );
 
 
-gulp.task('build:js', ['build:jspm'], () =>
-  gulp.src(OUTFILE)
-  .pipe($.replace(paths.fontAwesomePath, ''))
-  .pipe(gulp.dest(paths.buildScriptsDir))
+gulp.task('build:js', (callback) =>
+  runSequence('build:jspm', 'js:replace_paths', callback)
 )
 
 
@@ -59,7 +51,7 @@ gulp.task('build:fonts', () =>
 
 gulp.task('build', (callback) =>
   runSequence(
-    ['clean:build', 'build:copy_to_tmp'],
+    ['clean:build', 'utils:copy_to_tmp'],
     ['build:js', 'build:html', 'build:images', 'build:fonts'],
     callback
   )

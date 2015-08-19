@@ -1,5 +1,6 @@
 import path from 'path';
 
+import gulp from 'gulp';
 import jspm from 'jspm';
 
 import * as paths from './paths';
@@ -15,3 +16,9 @@ export default (options) => {
 
   return builder.buildSFX(INFILE, OUTFILE, options);
 }
+
+
+gulp.task('utils:copy_to_tmp', ['clean:tmp'], () =>
+  gulp.src(paths.srcAll)
+  .pipe(gulp.dest(paths.tmpDir))
+);

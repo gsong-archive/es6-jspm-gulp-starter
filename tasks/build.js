@@ -40,7 +40,7 @@ gulp.task('build:html', () =>
 
 
 gulp.task('build:images', () =>
-  gulp.src(paths.srcImage)
+  gulp.src(paths.tmpImage)
   .pipe($.imagemin({
     progressive: true,
     interlaced: true

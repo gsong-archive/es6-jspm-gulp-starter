@@ -39,7 +39,7 @@ Run `gulp dist` to build the app for distribution in the `dist` folder.
 
 ## Contributing
 
-1. Pick something from [TODO]('TODO.md') to work on.
+1. Pick something from [TODO][] to work on.
 2. If there's a problem, please file a [new issue][], or better yet, submit a
    [pull request][]!
 
@@ -60,3 +60,4 @@ Run `gulp dist` to build the app for distribution in the `dist` folder.
 [pull request]: https://github.com/gsong/es6-jspm-gulp-starter/compare/
 [systemjs]: https://github.com/systemjs/systemjs
 [unlicensed]: http://unlicense.org/
+[todo]: https://github.com/gsong/es6-jspm-gulp-starter/blob/development/TODO.md

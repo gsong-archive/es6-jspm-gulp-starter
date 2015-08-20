@@ -9,4 +9,3 @@
 [jasmine]: http://jasmine.github.io
 [karma]: http://karma-runner.github.io
 [sassdoc]: http://sassdoc.com/
-[scss-lint]: https://github.com/brigade/scss-lint

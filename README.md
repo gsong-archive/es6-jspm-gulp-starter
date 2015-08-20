@@ -19,6 +19,7 @@ a regular website as well.
     [Browsersync][]
 * Define and maintain consistent coding styles between different editors using
     [EditorConfig][]
+* Linting with [ESLint][]
 * Gulp tasks are written using ES6, of course.
 * Build task deals with simple case of fonts, images, and CSS url references
     properly.
@@ -52,6 +53,7 @@ Run `gulp dist` to build the app for distribution in the `dist` folder.
 [babel]: https://babeljs.io/
 [browsersync]: http://www.browsersync.io
 [editorconfig]: http://editorconfig.org
+[eslint]: http://eslint.org/
 [gs twitter]: https://twitter.com/zukefresh
 [gulp]: http://gulpjs.com
 [jspm]: http://jspm.io
@@ -59,5 +61,5 @@ Run `gulp dist` to build the app for distribution in the `dist` folder.
 [new issue]: https://github.com/gsong/es6-jspm-gulp-starter/issues/new
 [pull request]: https://github.com/gsong/es6-jspm-gulp-starter/compare/
 [systemjs]: https://github.com/systemjs/systemjs
-[unlicensed]: http://unlicense.org/
 [todo]: https://github.com/gsong/es6-jspm-gulp-starter/blob/development/TODO.md
+[unlicensed]: http://unlicense.org/

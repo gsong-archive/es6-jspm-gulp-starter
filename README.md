@@ -23,6 +23,8 @@ a regular website as well.
 * Gulp tasks are written using ES6, of course.
 * Build task deals with simple case of fonts, images, and CSS url references
     properly.
+* Multiple `serve` modes to facilitate development speed or simulate production
+    environment.
 * [Unlicensed][]
 
 ## Usage

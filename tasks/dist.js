@@ -40,7 +40,7 @@ gulp.task('dist:copy', () => {
   .pipe($.rev())
   .pipe(htmlFilter.restore)
   .pipe($.revReplace())
-  .pipe(gulp.dest(paths.DIST_DIR))
+  .pipe(gulp.dest(paths.DIST_DIR));
 });
 
 

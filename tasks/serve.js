@@ -1,4 +1,3 @@
-/*eslint-disable no-console */
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
 import runSequence from 'run-sequence';

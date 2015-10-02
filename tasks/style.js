@@ -1,4 +1,3 @@
-/*eslint-disable no-alert, no-console */
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 

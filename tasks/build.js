@@ -1,4 +1,3 @@
-/*eslint-disable no-alert, no-console */
 import path from 'path';
 
 import gulp from 'gulp';

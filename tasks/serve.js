@@ -1,9 +1,12 @@
 import browserSync from 'browser-sync';
-import gulp from 'gulp';
+import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
 
 import * as paths from './paths';
+import gulp from './_gulp';
 
+
+const $ = gulpLoadPlugins();
 
 const BS_OPTIONS = {
   ghostMode: false,
@@ -22,7 +25,7 @@ const BS_SERVER_OPTIONS = {
 
 
 function reportChange(event) {
-  console.log(
+  $.util.log(
     `File ${event.path} was ${event.type}, running tasks…`
   );
 }
@@ -45,11 +48,11 @@ gulp.task('serve:dev', ['compile:styles'], (done) => {
   let opts = Object.assign({}, BS_OPTIONS, {server: BS_SERVER_OPTIONS});
   browserSync(opts, done);
 
-  gulp.watch(paths.SRC_SCRIPT, ['reload']).on('change', reportChange);
-  gulp.watch(paths.SRC_HTML, ['reload']).on('change', reportChange);
-  gulp.watch(paths.SRC_STYLE, ['compile:styles', 'reload']).on(
-    'change', reportChange
-  );
+  gulp.watch(paths.SRC_SCRIPT, ['js:lint', 'reload'])
+  .on('change', reportChange);
+  gulp.watch(paths.SRC_INDEX, ['reload']).on('change', reportChange);
+  gulp.watch(paths.SRC_STYLE, ['compile:styles', 'reload'])
+  .on('change', reportChange);
 });
 
 

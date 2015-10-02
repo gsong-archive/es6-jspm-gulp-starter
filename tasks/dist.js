@@ -1,8 +1,8 @@
-import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
 
 import * as paths from './paths';
+import gulp from './_gulp';
 import jspmBuild from './utils';
 
 
@@ -24,7 +24,7 @@ gulp.task('dist:js', (callback) =>
 
 
 gulp.task('dist:html', () =>
-  gulp.src(paths.SRC_HTML)
+  gulp.src(paths.SRC_INDEX)
   .pipe($.htmlReplace({'js': 'scripts/main.js'}))
   .pipe($.minifyHtml({empty: true}))
   .pipe(gulp.dest(paths.BUILD_DIR))

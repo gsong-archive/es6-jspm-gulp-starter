@@ -1,7 +1,7 @@
-import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 
 import * as paths from './paths';
+import gulp from './_gulp';
 
 
 const $ = gulpLoadPlugins();
@@ -13,12 +13,6 @@ gulp.task('compile:styles', () => {
   const AUTOPREFIXER_BROWSERS = ['last 2 versions'];
 
   return gulp.src(paths.SRC_STYLE)
-  .pipe($.plumber({
-    errorHandler: (err) => {
-      console.log(err);
-      this.emit('end');
-    }
-  }))
   .pipe($.changed(paths.BUILD_DIR, {extension: '.css'}))
   .pipe($.sass().on('error', $.sass.logError))
   .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))

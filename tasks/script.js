@@ -1,8 +1,7 @@
-import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 
 import * as paths from './paths';
-import {OUTFILE} from './utils';
+import gulp from './_gulp';
 
 
 const $ = gulpLoadPlugins();
@@ -17,7 +16,7 @@ gulp.task('js:lint', () =>
 
 
 gulp.task('js:replace_paths', ['js:lint'], () =>
-  gulp.src(OUTFILE)
+  gulp.src(paths.MAIN_DEST)
   .pipe($.replace(paths.FONT_AWESOME_PATH, ''))
   .pipe($.replace(paths.TMP_DIR, ''))
   .pipe(gulp.dest(paths.BUILD_SCRIPTS_DIR))

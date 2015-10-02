@@ -1,21 +1,15 @@
-import path from 'path';
-
-import gulp from 'gulp';
 import jspm from 'jspm';
 
 import * as paths from './paths';
-
-
-const SCRIPT = 'main';
-const INFILE = path.join(paths.TMP_SCRIPTS_DIR, SCRIPT);
-export const OUTFILE = path.join(paths.BUILD_SCRIPTS_DIR, SCRIPT + '.js');
+import gulp from './_gulp';
 
 
 export default (options) => {
   let builder = new jspm.Builder();
 
-  return builder.buildStatic(INFILE, OUTFILE, options);
+  return builder.buildStatic(paths.MAIN_SRC, paths.MAIN_DEST, options);
 };
+
 
 gulp.task('utils:copy_to_tmp', ['clean:tmp'], () =>
   gulp.src(paths.SRC_ALL)

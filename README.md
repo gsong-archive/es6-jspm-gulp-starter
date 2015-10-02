@@ -41,6 +41,13 @@ a regular website as well.
 
 Run `gulp dist` to build the app for distribution in the `/dist` folder.
 
+## Hint
+
+Use [gulper][] if you want to automatically reload the Gulp runtime whenever you
+change Gulp task files. This is especially nice if you're customizing the task
+files to fit your own workflow. Otherwise you would have to constantly restart
+gulp.
+
 ## Contributing
 
 1. Pick something from [TODO][] to work on.
@@ -59,6 +66,7 @@ Run `gulp dist` to build the app for distribution in the `/dist` folder.
 [eslint]: http://eslint.org/
 [gs twitter]: https://twitter.com/zukefresh
 [gulp]: http://gulpjs.com
+[gulper]: https://github.com/anatoo/gulper
 [jspm]: http://jspm.io
 [libsass]: http://libsass.org/
 [new issue]: https://github.com/gsong/es6-jspm-gulp-starter/issues/new

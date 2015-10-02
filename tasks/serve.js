@@ -31,6 +31,17 @@ function reportChange(event) {
 }
 
 
+function _serve(baseDir, reloadTasks, done) {
+  const serverOpts = Object.assign(
+    {}, BS_SERVER_OPTIONS, {baseDir: baseDir}
+  );
+  const opts = Object.assign({}, BS_OPTIONS, {server: serverOpts});
+  browserSync(opts, done);
+
+  return gulp.watch(paths.SRC_ALL, reloadTasks).on('change', reportChange);
+}
+
+
 gulp.task('reload', () => browserSync.reload());
 
 
@@ -57,22 +68,10 @@ gulp.task('serve:dev', ['compile:styles', 'js:lint'], (done) => {
 
 
 gulp.task('serve:build', ['build'], (done) => {
-  let serverOpts = Object.assign(
-    {}, BS_SERVER_OPTIONS, {baseDir: [paths.BUILD_DIR]}
-  );
-  let opts = Object.assign({}, BS_OPTIONS, {server: serverOpts});
-  browserSync(opts, done);
-
-  gulp.watch(paths.SRC_ALL, ['reload:build']).on('change', reportChange);
+  return _serve([paths.BUILD_DIR], ['reload:build'], done);
 });
 
 
 gulp.task('serve:dist', ['dist'], (done) => {
-  let serverOpts = Object.assign(
-    {}, BS_SERVER_OPTIONS, {baseDir: [paths.DIST_DIR]}
-  );
-  let opts = Object.assign({}, BS_OPTIONS, {server: serverOpts});
-  browserSync(opts, done);
-
-  gulp.watch(paths.SRC_ALL, ['reload:dist']).on('change', reportChange);
+  return _serve([paths.DIST_DIR], ['reload:dist'], done);
 });

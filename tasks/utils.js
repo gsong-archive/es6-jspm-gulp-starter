@@ -5,7 +5,7 @@ import gulp from './_gulp';
 
 
 export default (options) => {
-  let builder = new jspm.Builder();
+  const builder = new jspm.Builder();
 
   return builder.buildStatic(paths.MAIN_SRC, paths.MAIN_DEST, options);
 };

@@ -45,7 +45,7 @@ gulp.task('reload:dist', (callback) => {
 
 
 gulp.task('serve:dev', ['compile:styles', 'js:lint'], (done) => {
-  let opts = Object.assign({}, BS_OPTIONS, {server: BS_SERVER_OPTIONS});
+  const opts = Object.assign({}, BS_OPTIONS, {server: BS_SERVER_OPTIONS});
   browserSync(opts, done);
 
   gulp.watch(paths.SRC_SCRIPT, ['js:lint', 'reload'])

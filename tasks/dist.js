@@ -32,13 +32,15 @@ gulp.task('dist:html', () =>
 
 
 gulp.task('dist:copy', () => {
-  const htmlFilter = $.filter("**/*.!(html)", {restore: true});
+  const htmlFilter = $.filter('**/*.!(html)', {restore: true});
 
   return gulp.src(paths.BUILD_ALL)
   .pipe(htmlFilter)
   .pipe($.rev())
   .pipe(htmlFilter.restore)
   .pipe($.revReplace())
+  .pipe(gulp.dest(paths.DIST_DIR))
+  .pipe($.gzip())
   .pipe(gulp.dest(paths.DIST_DIR));
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "es6-jspm-gulp-starter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ES6 starter template, using babel, jspm, and gulp",
   "main": "app/index.html",
   "scripts": {

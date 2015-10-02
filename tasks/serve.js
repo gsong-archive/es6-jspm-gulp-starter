@@ -44,7 +44,7 @@ gulp.task('reload:dist', (callback) => {
 });
 
 
-gulp.task('serve:dev', ['compile:styles'], (done) => {
+gulp.task('serve:dev', ['compile:styles', 'js:lint'], (done) => {
   let opts = Object.assign({}, BS_OPTIONS, {server: BS_SERVER_OPTIONS});
   browserSync(opts, done);
 

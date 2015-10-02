@@ -11,7 +11,7 @@ const BS_OPTIONS = {
   open: false,
   notify: false,
   port: 9000
-}
+};
 
 const BS_SERVER_OPTIONS = {
     baseDir: ['.', paths.SRC_DIR, paths.TMP_DIR],
@@ -19,7 +19,7 @@ const BS_SERVER_OPTIONS = {
       res.setHeader('Access-Control-Allow-Origin', '*');
       next();
     }
-}
+};
 
 
 function reportChange(event) {

@@ -15,7 +15,7 @@ export default (options) => {
   let builder = new jspm.Builder();
 
   return builder.buildSFX(INFILE, OUTFILE, options);
-}
+};
 
 
 gulp.task('utils:copy_to_tmp', ['clean:tmp'], () =>

@@ -14,7 +14,7 @@ export const OUTFILE = path.join(paths.BUILD_SCRIPTS_DIR, SCRIPT + '.js');
 export default (options) => {
   let builder = new jspm.Builder();
 
-  return builder.buildSFX(INFILE, OUTFILE, options);
+  return builder.buildStatic(INFILE, OUTFILE, options);
 }
 
 

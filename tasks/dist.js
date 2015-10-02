@@ -21,7 +21,7 @@ gulp.task('dist:jspm', ['compile:styles'], () =>
 
 gulp.task('dist:js', (callback) =>
   runSequence('dist:jspm', 'js:replace_paths', callback)
-)
+);
 
 
 gulp.task('dist:html', () =>

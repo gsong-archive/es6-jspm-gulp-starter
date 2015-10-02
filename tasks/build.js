@@ -23,7 +23,7 @@ gulp.task('build:jspm', ['compile:styles'], () =>
 
 gulp.task('build:js', (callback) =>
   runSequence('build:jspm', 'js:replace_paths', callback)
-)
+);
 
 
 gulp.task('build:html', () =>
@@ -40,13 +40,13 @@ gulp.task('build:images', () =>
     interlaced: true
   }))
   .pipe(gulp.dest(paths.BUILD_DIR))
-)
+);
 
 
 gulp.task('build:fonts', () =>
   gulp.src(paths.FONT_SRC)
   .pipe(gulp.dest(path.join(paths.BUILD_DIR, 'fonts')))
-)
+);
 
 
 gulp.task('build', (callback) =>

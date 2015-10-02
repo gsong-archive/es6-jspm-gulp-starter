@@ -1,19 +1,19 @@
-# ES6 + JSPM + Gulp Starter
+# ES6 + jspm + Gulp Starter
 
-Starter template for developing ES6+ apps using JSPM & Gulp. This is heavily
+Starter template for developing ES6+ apps using jspm & Gulp. This is heavily
 geared toward single page applications ("SPA"), but can be modified for use for
 a regular website as well.
 
 ## Primary Technologies
 
 * Transpiles ES6+ automagically using [Babel][]
-* Package management using [JSPM][]
+* Package management using [jspm][]
 * Develop and build using [Gulp][] and friends
 
 ## Starter Features
 
-* Uses JSPM instead of Bower or npm to manage packages for the browser
-* Uses [SystemJS][] to load modules via JSPM
+* Uses jspm instead of Bower or npm to manage packages for the browser
+* Uses [SystemJS][] to load modules via jspm
 * Sass compilation using [LibSass][] and [Autoprefixer][]
 * Local dev server with [LiveReload](http://livereload.com/) using
     [Browsersync][]
@@ -30,15 +30,16 @@ a regular website as well.
 ## Usage
 
 1. Clone this repo from `https://github.com/gsong/es6-jspm-gulp-starter.git`.
-2. Make sure you have `node` installed on your machine.
-3. Install Gulp globally: `npm install -g gulp`.
+2. Make sure you have `node` installed on your machine. [nvm][] is highly
+   recommended.
+3. Install Gulp and jspm globally: `npm install -g gulp jspm`.
 4. `npm install` then `jspm install` to instal development and browser packages.
 5. Run `gulp` to start the local dev server.
 6. Write an awesome app! 😀
 
 ## Building
 
-Run `gulp dist` to build the app for distribution in the `dist` folder.
+Run `gulp dist` to build the app for distribution in the `/dist` folder.
 
 ## Contributing
 
@@ -61,6 +62,7 @@ Run `gulp dist` to build the app for distribution in the `dist` folder.
 [jspm]: http://jspm.io
 [libsass]: http://libsass.org/
 [new issue]: https://github.com/gsong/es6-jspm-gulp-starter/issues/new
+[nvm]: https://github.com/creationix/nvm
 [pull request]: https://github.com/gsong/es6-jspm-gulp-starter/compare/
 [systemjs]: https://github.com/systemjs/systemjs
 [todo]: https://github.com/gsong/es6-jspm-gulp-starter/blob/development/TODO.md
